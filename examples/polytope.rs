@@ -2,7 +2,7 @@ use std::time::Instant;
 
 use lazy_reach::{
     convex::SHalfspacePolytope, convex::SupportFunction, operation::LinearTransformation,
-    operation::MinkowskiSum,
+    operation::MinkowskiSum, overapproximate,
 };
 use nalgebra::{SMatrix, SVector};
 
@@ -47,7 +47,19 @@ fn main() {
 
     let elapsed_time = now.elapsed();
 
-    println!("obj: {}", obj);
-    println!("supp: {}", supp);
-    println!("elapsed time: {}ns", elapsed_time.as_nanos());
+    let oa = overapproximate::overapproximate::<Float, DIM>(&lt);
+
+    // print the oa a_tranform and upperbounds as csv
+    for i in 0..oa.a_transform.nrows() {
+        for j in 0..oa.a_transform.ncols() {
+            print!("{},", oa.a_transform[(i, j)]);
+        }
+        print!("{}", oa.upper_bounds[i]);
+        println!();
+    }
+
+    //println!("obj: {}", obj);
+    //println!("supp: {}", supp);
+    //println!("overapproximate: {}", oa.a_transform);
+    //println!("elapsed time: {}ns", elapsed_time.as_nanos());
 }

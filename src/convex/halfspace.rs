@@ -8,8 +8,8 @@ use super::SupportFunction;
 /// Dynamically allocated Halfspace polytope Hy \le h with a compact solution set
 pub struct DHalfspacePolytope<N> {
     /// Hy \le h
-    a_transform: DMatrix<N>,
-    upper_bounds: DVector<N>,
+    pub a_transform: DMatrix<N>,
+    pub upper_bounds: DVector<N>,
 }
 
 impl<N> DHalfspacePolytope<N> {
