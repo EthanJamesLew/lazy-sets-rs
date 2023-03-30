@@ -28,7 +28,7 @@ fn main() {
 
     let ch = ConvexHull::<Float, DIM>::new(Box::new(lt), Box::new(polytope1));
 
-    let oa = overapproximate::overapproximate::<Float, DIM>(&ch);
+    let oa = overapproximate::overapproximate::<Float, DIM>(&ch, 20);
 
     // print the oa a_tranform and upperbounds as csv
     for i in 0..oa.a_transform.nrows() {

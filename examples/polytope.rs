@@ -1,6 +1,6 @@
 use lazy_reach::{
-    convex::SHalfspacePolytope, lazy_operation::LinearTransformation, lazy_operation::MinkowskiSum,
-    overapproximate,
+    convex::Hypersphere, convex::SHalfspacePolytope, lazy_operation::LinearTransformation,
+    lazy_operation::MinkowskiSum, overapproximate,
 };
 use nalgebra::{SMatrix, SVector};
 
@@ -21,12 +21,13 @@ fn main() {
     let polytope = SHalfspacePolytope::<Float, 4, 2>::new(a_transform, h);
     let lt = LinearTransformation::<Float, DIM>::new(rot, Box::new(polytope.clone()));
 
+    let sphere = Hypersphere::<Float, DIM>::new(2.0);
     // create minkowski sum
-    let ms = MinkowskiSum::<Float, DIM>::new(Box::new(polytope.clone()), Box::new(lt));
+    let ms = MinkowskiSum::<Float, DIM>::new(Box::new(sphere), Box::new(lt));
     // sum with another ms
-    let ms2 = MinkowskiSum::<Float, DIM>::new(Box::new(ms), Box::new(polytope.clone()));
+    //let ms2 = MinkowskiSum::<Float, DIM>::new(Box::new(ms), Box::new(polytope.clone()));
 
-    let oa = overapproximate::overapproximate::<Float, DIM>(&ms2);
+    let oa = overapproximate::overapproximate::<Float, DIM>(&ms, 80);
 
     // print the oa a_tranform and upperbounds as csv
     for i in 0..oa.a_transform.nrows() {

@@ -68,12 +68,12 @@ where
 /// overapproximate a convex set with a dynamically allocated H polytope
 pub fn overapproximate<N, const D: usize>(
     convex_set: &dyn SupportFunction<N, D>,
+    num_samples: usize,
 ) -> DHalfspacePolytope<N>
 where
     N: RealField + Copy + FromPrimitive + ToPrimitive + SampleUniform,
 {
     // generate random unit vectors pointing uniformly in the unit sphere
-    let num_samples = 600;
     let mut rng = rand::thread_rng();
     let mut unit_vectors = Vec::new();
 
