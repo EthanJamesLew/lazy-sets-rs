@@ -1,4 +1,4 @@
-use nalgebra::SVector;
+use nalgebra::{RealField, SVector};
 
 use crate::convex::SupportFunction;
 
@@ -20,8 +20,11 @@ impl<N, const D: usize> ConvexHull<N, D> {
     }
 }
 
-impl SupportFunction<f64, 2> for ConvexHull<f64, 2> {
-    fn support(&self, direction: &SVector<f64, 2>) -> (f64, SVector<f64, 2>) {
+impl<N, const D: usize> SupportFunction<N, D> for ConvexHull<N, D>
+where
+    N: RealField,
+{
+    fn support(&self, direction: &SVector<N, D>) -> (N, SVector<N, D>) {
         let (d1, p1) = self.sf1.support(direction);
         let (d2, p2) = self.sf2.support(direction);
         if d1 > d2 {

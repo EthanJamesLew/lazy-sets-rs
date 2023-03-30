@@ -1,13 +1,17 @@
 use std::sync::Arc;
 
-use nalgebra::{SVector, RealField, DMatrix, DVector};
-use num_traits::{Zero, Float, FromPrimitive};
-use rand::{Rng, distributions::uniform::SampleUniform};
+use nalgebra::{DMatrix, DVector, RealField, SVector};
+use num_traits::{Float, FromPrimitive, Zero};
+use rand::{distributions::uniform::SampleUniform, Rng};
 
-use crate::convex::{SupportFunction, DHalfspacePolytope};
+use crate::convex::{DHalfspacePolytope, SupportFunction};
 
-pub fn overapproximate<N, const D: usize>(convex_set: &dyn SupportFunction<N, D>) -> DHalfspacePolytope<N> 
-where N: RealField + Copy + FromPrimitive + SampleUniform {
+pub fn overapproximate<N, const D: usize>(
+    convex_set: &dyn SupportFunction<N, D>,
+) -> DHalfspacePolytope<N>
+where
+    N: RealField + Copy + FromPrimitive + SampleUniform,
+{
     // generate random unit vectors pointing uniformly in the unit sphere
     let num_samples = 600;
     let mut rng = rand::thread_rng();
@@ -22,7 +26,7 @@ where N: RealField + Copy + FromPrimitive + SampleUniform {
         }
         v = v.normalize();
         unit_vectors.push(v);
-        
+
         // compute sigma and rho
         let (rho, sigma) = convex_set.support(&v);
 
