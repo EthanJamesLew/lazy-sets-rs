@@ -1,3 +1,6 @@
+/*!
+ * Hull of Sets Operations
+ */
 use nalgebra::{RealField, SVector};
 
 use crate::convex::SupportFunction;

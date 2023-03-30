@@ -1,3 +1,6 @@
+/*!
+ * Halfspace Polyhedral Sets
+ */
 use minilp::{ComparisonOp, OptimizationDirection, Problem, Variable};
 use nalgebra::{DMatrix, DVector, RealField, SMatrix, SVector};
 use num_traits::ToPrimitive;
@@ -7,12 +10,14 @@ use super::SupportFunction;
 #[derive(Clone)]
 /// Dynamically allocated Halfspace polytope Hy \le h with a compact solution set
 pub struct DHalfspacePolytope<N> {
-    /// Hy \le h
+    /// The linear transformation matrix.
     pub a_transform: DMatrix<N>,
+    /// The upper bounds.
     pub upper_bounds: DVector<N>,
 }
 
 impl<N> DHalfspacePolytope<N> {
+    /// Create a new halfspace polytope.
     pub fn new(a_transform: DMatrix<N>, h: DVector<N>) -> DHalfspacePolytope<N> {
         DHalfspacePolytope {
             a_transform,
@@ -73,6 +78,7 @@ pub struct SHalfspacePolytope<N, const R: usize, const C: usize> {
 }
 
 impl<N, const R: usize, const C: usize> SHalfspacePolytope<N, R, C> {
+    /// Create a new halfspace polytope.
     pub fn new(a_transform: SMatrix<N, R, C>, h: SVector<N, R>) -> SHalfspacePolytope<N, R, C> {
         SHalfspacePolytope {
             a_transform,

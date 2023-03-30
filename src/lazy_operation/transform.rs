@@ -1,7 +1,11 @@
+/*!
+ * The linear transformation operation.
+ */
 use nalgebra::{RealField, SMatrix, SVector};
 
 use crate::convex::SupportFunction;
 
+/// A linear transformation of a set.
 pub struct LinearTransformation<N, const D: usize> {
     /// The linear transformation matrix.
     a_transform: SMatrix<N, D, D>,
@@ -10,6 +14,7 @@ pub struct LinearTransformation<N, const D: usize> {
 }
 
 impl<N, const D: usize> LinearTransformation<N, D> {
+    /// Create a new linear transformation of a set.
     pub fn new(
         a_transform: SMatrix<N, D, D>,
         sf: Box<dyn SupportFunction<N, D>>,

@@ -1,5 +1,5 @@
 use lazy_reach::{
-    convex::SHalfspacePolytope, operation::LinearTransformation, operation::MinkowskiSum,
+    convex::SHalfspacePolytope, lazy_operation::LinearTransformation, lazy_operation::MinkowskiSum,
     overapproximate,
 };
 use nalgebra::{SMatrix, SVector};

@@ -1,7 +1,5 @@
 use lazy_reach::{
-    convex::SHalfspacePolytope,
-    operation::LinearTransformation,
-    operation::{ConvexHull, MinkowskiSum},
+    convex::SHalfspacePolytope, lazy_operation::ConvexHull, lazy_operation::LinearTransformation,
     overapproximate,
 };
 use nalgebra::{SMatrix, SVector};

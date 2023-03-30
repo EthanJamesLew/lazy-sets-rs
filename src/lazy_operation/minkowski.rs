@@ -1,3 +1,6 @@
+/*!
+ * Minkowski Sum
+ */
 use nalgebra::{RealField, SVector};
 
 use crate::convex::SupportFunction;
@@ -12,6 +15,7 @@ pub struct MinkowskiSum<N, const D: usize> {
 }
 
 impl<N, const D: usize> MinkowskiSum<N, D> {
+    /// Create a new Minkowski sum of sets with support functions.
     pub fn new(
         sf1: Box<dyn SupportFunction<N, D>>,
         sf2: Box<dyn SupportFunction<N, D>>,

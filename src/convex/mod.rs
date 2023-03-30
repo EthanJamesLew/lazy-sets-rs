@@ -1,3 +1,6 @@
+/*!
+* Convex Sets 
+*/
 pub mod halfspace;
 mod traits;
 

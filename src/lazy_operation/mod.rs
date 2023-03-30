@@ -1,3 +1,6 @@
+/*!
+ * Operations on geometric domains.
+ */
 pub mod hull;
 pub mod minkowski;
 pub mod transform;
