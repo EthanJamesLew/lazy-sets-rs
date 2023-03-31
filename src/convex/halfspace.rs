@@ -5,7 +5,7 @@ use minilp::{ComparisonOp, OptimizationDirection, Problem, Variable};
 use nalgebra::{DMatrix, DVector, RealField, SMatrix, SVector};
 use num_traits::ToPrimitive;
 
-use super::SupportFunction;
+use super::{DSupportFunction, SupportFunction};
 
 #[derive(Clone)]
 /// Dynamically allocated Halfspace polytope Hy \le h with a compact solution set
@@ -26,11 +26,11 @@ impl<N> DHalfspacePolytope<N> {
     }
 }
 
-impl<N, const D: usize> SupportFunction<N, D> for DHalfspacePolytope<N>
+impl<N> DSupportFunction<N> for DHalfspacePolytope<N>
 where
     N: RealField + ToPrimitive,
 {
-    fn support(&self, direction: &SVector<N, D>) -> (N, SVector<N, D>) {
+    fn support(&self, direction: &DVector<N>) -> (N, DVector<N>) {
         let mut problem = Problem::new(OptimizationDirection::Maximize);
 
         // make a variable for every column in H
@@ -65,7 +65,7 @@ where
             values.push(N::from_f64(solution[vars[i]]).unwrap());
         }
 
-        (objective, SVector::from_vec(values))
+        (objective, DVector::from_vec(values))
     }
 }
 

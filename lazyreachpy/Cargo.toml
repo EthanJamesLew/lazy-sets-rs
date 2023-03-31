@@ -1,0 +1,15 @@
+[package]
+name = "lazyreachpy"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "lazyreachpy"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = "0.18.1"
+lazy-reach = { path = ".." }
+nalgebra = "0.28.0"
+numpy = { version = "0.18.0", features = ["nalgebra"] }
