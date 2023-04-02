@@ -65,6 +65,7 @@ $$
 #### Singleton
 
 $\mathcal X = \lbrace  p \rbrace$,
+
 $$
 g_{\mathcal X} (u) = \langle p, u \rangle.
 $$
@@ -74,6 +75,7 @@ Translating a set by $p$ is equivalent to taking $\mathcal Y \oplus \{p\}$.
 #### Line
 
 A line segment through the origin with endpoints $(-a, a)$,  $\mathcal X = \lbrace  t a | t \in [-1, 1] \rbrace$,
+
 $$
 g_{\mathcal X}(u) = |\langle u, a \rangle|.
 $$
