@@ -24,9 +24,11 @@ ConvexHull
 ```
 
 With this lazy representation, say we want to compute a *support value* for a direction $d \in \mathbb R^n$. The support value is found by solving the problem
+
 $$
 g_{\mathcal Y}(d) = \operatorname*{max}_{y \in \mathcal Y} \langle d, y \rangle
 $$
+
 Now, we don't know the support vector for this set directly, but say we do know the support vector for the underlying sets $\mathcal X_0$ and $\mathcal U$. Support functions follow the compositional rules
 
 $$
@@ -36,7 +38,9 @@ g_{\operatorname{ConvexHull}(\mathcal X, \mathcal Y)} (u) &= \max (g_{\mathcal X
 g_{A \mathcal X}(u) &= g_{\mathcal X} (A^T u)
 \end{aligned}
 $$
+
 Evaulating the tree above, it is clear the support function can be computed by
+
 $$
 g_{\mathcal Y} (u) = \max \left(g_{\mathcal X_0}\left( \left( e^{A \delta} \right)^T u \right) + g_{\mathcal U}\left( (\delta B)^T u \right) , g_{\mathcal X_0}(u)\right).
 $$
