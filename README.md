@@ -45,23 +45,26 @@ $g_{\mathcal X_0}$ and $g_{\mathcal U}$ can be computed if they are
 
 #### Halfspace Polyhedral Set
 
-$\mathcal X = \left\{ x | x \in A x \le b \right\}$, solve the linear program
+$\mathcal X = \lbrace  x | x \in A x \le b \rbrace$, solve the linear program
 
 $$
+\begin{aligned}
 \max u^T x \\
 \text{subject to} \quad A x \le b.
+\end{aligned}
 $$
 
 #### Unit Ball
 
-$\mathcal X = \left\{x | \|x\|_2 \le 1 \right\}$,
+$\mathcal X = \lbrace x | \|x\|_2 \le 1 \rbrace$,
+
 $$
 g_{\mathcal X}(u) = \|u\|_2.
 $$
 
 #### Singleton
 
-$\mathcal X = \left\{ p \right\}$,
+$\mathcal X = \lbrace  p \rbrace$,
 $$
 g_{\mathcal X} (u) = \langle p, u \rangle.
 $$
@@ -70,7 +73,7 @@ Translating a set by $p$ is equivalent to taking $\mathcal Y \oplus \{p\}$.
 
 #### Line
 
-A line segment through the origin with endpoints $(-a, a)$,  $\mathcal X = \left\{ t a | t \in [-1, 1] \right\}$,
+A line segment through the origin with endpoints $(-a, a)$,  $\mathcal X = \lbrace  t a | t \in [-1, 1] \rbrace$,
 $$
 g_{\mathcal X}(u) = |\langle u, a \rangle|.
 $$
