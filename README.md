@@ -1,4 +1,7 @@
 # LazySets-rs
+
+![LazySet Example](./doc/img/set.png)
+
 Implementing the scalable symbolic-numeric set computations ideas of LazySets.jl in Rust. 
 
 ## Approach
