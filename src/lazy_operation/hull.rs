@@ -3,33 +3,33 @@
  */
 use nalgebra::{RealField, SVector};
 
-use crate::convex::SupportFunction;
+use crate::convex::LazySet;
 
 /// Convex hull of two convex sets.
 pub struct ConvexHull<N, const D: usize> {
-    /// The first support function.
-    sf1: Box<dyn SupportFunction<N, D>>,
-    /// The second support function.
-    sf2: Box<dyn SupportFunction<N, D>>,
+    /// The first support function (left hand side).
+    lhs: Box<dyn LazySet<N, D>>,
+    /// The second support function (right hand side).
+    rhs: Box<dyn LazySet<N, D>>,
 }
 
 impl<N, const D: usize> ConvexHull<N, D> {
     /// Create a new convex hull of two convex sets.
     pub fn new(
-        sf1: Box<dyn SupportFunction<N, D>>,
-        sf2: Box<dyn SupportFunction<N, D>>,
+        lhs: Box<dyn LazySet<N, D>>,
+        rhs: Box<dyn LazySet<N, D>>,
     ) -> ConvexHull<N, D> {
-        ConvexHull { sf1, sf2 }
+        ConvexHull { lhs, rhs }
     }
 }
 
-impl<N, const D: usize> SupportFunction<N, D> for ConvexHull<N, D>
+impl<N, const D: usize> LazySet<N, D> for ConvexHull<N, D>
 where
     N: RealField,
 {
     fn support(&self, direction: &SVector<N, D>) -> (N, SVector<N, D>) {
-        let (d1, p1) = self.sf1.support(direction);
-        let (d2, p2) = self.sf2.support(direction);
+        let (d1, p1) = self.lhs.support(direction);
+        let (d2, p2) = self.rhs.support(direction);
         if d1 > d2 {
             (d1, p1)
         } else {

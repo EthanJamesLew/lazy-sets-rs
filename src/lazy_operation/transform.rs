@@ -3,27 +3,27 @@
  */
 use nalgebra::{RealField, SMatrix, SVector};
 
-use crate::convex::SupportFunction;
+use crate::convex::LazySet;
 
 /// A linear transformation of a set.
 pub struct LinearTransformation<N, const D: usize> {
     /// The linear transformation matrix.
     a_transform: SMatrix<N, D, D>,
     /// The support function.
-    sf: Box<dyn SupportFunction<N, D>>,
+    sf: Box<dyn LazySet<N, D>>,
 }
 
 impl<N, const D: usize> LinearTransformation<N, D> {
     /// Create a new linear transformation of a set.
     pub fn new(
         a_transform: SMatrix<N, D, D>,
-        sf: Box<dyn SupportFunction<N, D>>,
+        sf: Box<dyn LazySet<N, D>>,
     ) -> LinearTransformation<N, D> {
         LinearTransformation { a_transform, sf }
     }
 }
 
-impl<N, const D: usize> SupportFunction<N, D> for LinearTransformation<N, D>
+impl<N, const D: usize> LazySet<N, D> for LinearTransformation<N, D>
 where
     N: RealField,
 {

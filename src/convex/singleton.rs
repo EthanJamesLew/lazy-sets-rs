@@ -3,7 +3,7 @@
  */
 use nalgebra::{RealField, SVector};
 
-use super::SupportFunction;
+use super::LazySet;
 
 /// A singleton.
 #[derive(Clone)]
@@ -22,7 +22,7 @@ where
     }
 }
 
-impl<N, const D: usize> SupportFunction<N, D> for Singleton<N, D>
+impl<N, const D: usize> LazySet<N, D> for Singleton<N, D>
 where
     N: RealField,
 {

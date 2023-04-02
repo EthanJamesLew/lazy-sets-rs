@@ -2,7 +2,7 @@
  * HyperSphere
  */
 
-use super::traits::SupportFunction;
+use super::traits::LazySet;
 use nalgebra::{RealField, SVector};
 
 /// A hyper-sphere.
@@ -25,7 +25,7 @@ where
     }
 }
 
-impl<N, const D: usize> SupportFunction<N, D> for Hypersphere<N, D>
+impl<N, const D: usize> LazySet<N, D> for Hypersphere<N, D>
 where
     N: RealField,
 {

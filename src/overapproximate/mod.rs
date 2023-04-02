@@ -6,7 +6,7 @@ use nalgebra::{DMatrix, DVector, RealField, SVector};
 use num_traits::{FromPrimitive, ToPrimitive, Zero};
 use rand::{distributions::uniform::SampleUniform, Rng};
 
-use crate::convex::{DHalfspacePolytope, SupportFunction};
+use crate::convex::{DHalfspacePolytope, LazySet};
 
 /// determines for a polyhedral set Ax <= b, determine if a new constraint c^T x <= d is redundant
 fn is_constraint_redundant<N, const D: usize>(
@@ -67,7 +67,7 @@ where
 
 /// overapproximate a convex set with a dynamically allocated H polytope
 pub fn overapproximate<N, const D: usize>(
-    convex_set: &dyn SupportFunction<N, D>,
+    convex_set: &dyn LazySet<N, D>,
     num_samples: usize,
 ) -> DHalfspacePolytope<N>
 where

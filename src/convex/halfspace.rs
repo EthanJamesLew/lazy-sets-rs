@@ -5,7 +5,7 @@ use minilp::{ComparisonOp, OptimizationDirection, Problem, Variable};
 use nalgebra::{DMatrix, DVector, RealField, SMatrix, SVector};
 use num_traits::ToPrimitive;
 
-use super::{DSupportFunction, SupportFunction};
+use super::{DLazySet, LazySet};
 
 #[derive(Clone)]
 /// Dynamically allocated Halfspace polytope Hy \le h with a compact solution set
@@ -26,7 +26,7 @@ impl<N> DHalfspacePolytope<N> {
     }
 }
 
-impl<N> DSupportFunction<N> for DHalfspacePolytope<N>
+impl<N> DLazySet<N> for DHalfspacePolytope<N>
 where
     N: RealField + ToPrimitive,
 {
@@ -87,7 +87,7 @@ impl<N, const R: usize, const C: usize> SHalfspacePolytope<N, R, C> {
     }
 }
 
-impl<N, const R: usize, const C: usize> SupportFunction<N, C> for SHalfspacePolytope<N, R, C>
+impl<N, const R: usize, const C: usize> LazySet<N, C> for SHalfspacePolytope<N, R, C>
 where
     N: RealField + ToPrimitive,
 {

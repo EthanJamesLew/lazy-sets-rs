@@ -9,4 +9,4 @@ mod traits;
 pub use halfspace::{DHalfspacePolytope, SHalfspacePolytope};
 pub use singleton::Singleton;
 pub use sphere::Hypersphere;
-pub use traits::{DSupportFunction, SupportFunction};
+pub use traits::{DLazySet, LazySet};
